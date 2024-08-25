@@ -1,0 +1,4 @@
+cartopy
+numpy
+geopandas
+regionmask
