@@ -7,8 +7,8 @@ from pyshtools.spectralanalysis import Curve2Mask
 if __name__ == "__main__":
     nlat = 180
     nlon = 360
-    lon = np.linspace(0, 360, nlon)
-    lat = np.linspace(90, -89, nlat)
+    lon = np.linspace(0, 360, nlon, endpoint=False)
+    lat = np.linspace(90, -90, nlat, endpoint=False)
     lon_x, lat_y = np.meshgrid(lon, lat)
 
     gis = np.loadtxt('D:\\tvg_toolkit\\fingerprint_approach\\greenland.txt')
@@ -23,10 +23,10 @@ if __name__ == "__main__":
         boundary = np.hstack((lats, lons))
         mask = Curve2Mask(nlat, boundary, 0, sampling=2)
         masks += mask
-        # np.savetxt(
-        #     f'D:/tvg_toolkit/masking/data/mask/gismask/gis_{id:.1f}_1deg.mask', 
-        #     np.c_[lon_x.ravel(), lat_y.ravel(), mask.ravel()]
-        # )
+        np.savetxt(
+            f'D:/tvg_toolkit/masking/data/mask/gismask/gis_{id:.1f}_1deg.mask', 
+            np.c_[lon_x.ravel(), lat_y.ravel(), mask.ravel()]
+        )
         
     fig = plt.figure(figsize=(16, 9))
     ax = fig.add_subplot(111, projection=ccrs.LambertConformal(central_longitude=-42.5))

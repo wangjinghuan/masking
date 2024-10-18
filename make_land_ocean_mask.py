@@ -136,8 +136,9 @@ def make_landmask(lon, lat, filepath, buf):
 
 if __name__ == "__main__":
     km = np.linspace(50, 300, 6, dtype=int)
-    lon = np.linspace(-180, 179, 360)
-    lat = np.linspace(90, -89, 180)
+    nlon, nlat = 360, 180
+    lon = np.linspace(0, 360, nlon, endpoint=False)
+    lat = np.linspace(90, -90, nlat, endpoint=False)
     make_landmask(
         lon, lat, "D:\\tvg_toolkit\\masking\\data\\shapefile\\land_shp\\ne_110m_land.shp", 0
     )
